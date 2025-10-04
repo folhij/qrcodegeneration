@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Генератор QR-кодов</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#f9fafb;color:#111827;display:flex;flex-direction:column;min-height:100vh}
+    header{background:#16a34a;color:white;padding:16px;text-align:center}
+    h1{margin:0;font-size:22px}
+    main{flex:1;display:flex;justify-content:center;align-items:center;padding:20px}
+    .container{background:white;padding:20px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.1);max-width:400px;width:100%;text-align:center}
+    input{width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:8px;font-size:16px}
+    button{padding:10px 16px;border:none;border-radius:8px;cursor:pointer;background:#16a34a;color:white;font-weight:600;font-size:16px}
+    button:hover{background:#15803d}
+    #qrcode{margin-top:20px}
+    footer{text-align:center;margin:20px 0;color:#6b7280;font-size:14px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Генератор QR-кодов</h1>
+    <p>Введи текст или ссылку — получи QR-код</p>
+  </header>
+
+  <main>
+    <div class="container">
+      <input type="text" id="text" placeholder="Введи текст или ссылку">
+      <button onclick="generateQR()">Сгенерировать QR</button>
+      <div id="qrcode"></div>
+    </div>
+  </main>
+
+  <footer>Сделал Арсений ✨</footer>
+
+  <!-- Подключаем библиотеку QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    function generateQR(){
+      const text = document.getElementById("text").value.trim();
+      const qrContainer = document.getElementById("qrcode");
+      qrContainer.innerHTML = "";
+      if(text === "") return alert("Введите текст или ссылку!");
+      new QRCode(qrContainer, {
+        text: text,
+        width: 200,
+        height: 200
+      });
+    }
+  </script>
+</body>
+</html>
